@@ -1,3 +1,6 @@
+{% extends "posts/base.html" %}
+
+{% block content %}
 <h1>{{ post.title }}</h1>
 <small>작성자: {{ post.user }}</small>
 <br />
@@ -11,9 +14,11 @@
 <small>작성일: {{ post.created_at }}</small>
 <br />
 <small>수정일: {{ post.updated_at }}</small>
-
+<br />
+<br />
+<br />
 <hr />
-<form action="/posts/{{ post.id }}/update" mehtod="post">
+<form action="/posts/{{ post.id }}/update">
     {% csrf_token %}
     <input type="submit" value="수정하기" />
 </form>
@@ -22,3 +27,15 @@
     {% csrf_token %}
     <input type="submit" value="삭제하기" />
 </form>
+
+<form action="/posts/{{ post.id }}", method="post">
+    {% csrf_token %}
+    {% if like %}
+        <input name="like" type="submit" value="좋아요" style="color: red">
+        {% else %}
+        <input name="like" type="submit" value="좋아요">
+    {% endif %}
+
+</form>
+
+{% endblock%}

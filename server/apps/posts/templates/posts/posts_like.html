@@ -1,0 +1,9 @@
+{% extends "posts/base.html" %}
+
+{% block content %}
+{% for post in posts %}
+<h3><a href="/posts/{{ post.pk }}">{{ post.title }}</a></h3>
+<p>{{ post.region }}</p>
+<hr />
+{% endfor %}
+{% endblock%}
